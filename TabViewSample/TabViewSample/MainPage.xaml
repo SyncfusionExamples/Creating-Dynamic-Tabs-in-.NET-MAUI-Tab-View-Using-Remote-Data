@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabview="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:local="clr-namespace:TabViewSample"
+             x:Class="TabViewSample.MainPage">
+
+    <!--Gradient background-->
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5,0.35" Radius="0.9">
+            <GradientStop Color="#3A91F7" Offset="0.0" />
+            <GradientStop Color="#0D2C4D" Offset="0.55" />
+            <GradientStop Color="#071421" Offset="1.0" />
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <!--for selecting cities-->
+        <tabview:SfTabView x:Name="LocationTabView" TabBarPlacement="Top" IndicatorBackground="White"
+                       TabWidthMode="{OnPlatform Android=SizeToContent}" >
+
+            <tabview:SfTabItem Header="Phoenix" TextColor="White" FontSize="16"/>
+            <tabview:SfTabItem Header="Seattle" TextColor="White" FontSize="16"/>
+            <tabview:SfTabItem Header="San Francisco" TextColor="White" FontSize="16"/>
+            <tabview:SfTabItem Header="Miami" TextColor="White" FontSize="16"/>
+            <tabview:SfTabItem Header="Denver" TextColor="White" FontSize="16"/>
+            <tabview:SfTabItem Header="Chicago" TextColor="White" FontSize="16"/>
+            <tabview:SfTabItem Header="New York" TextColor="White" FontSize="16"/>
+        </tabview:SfTabView>
+
+        <!-- Weather Display -->
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15">
+
+                <!--current date-->
+                <Label x:Name="DateLabel" FontSize="25" TextColor="White" HorizontalOptions="Center" />
+                <!--current weather icon-->
+                <Image x:Name="WeatherIcon" HeightRequest="100" HorizontalOptions="Center" />
+                <!--current weather condition-->
+                <Label x:Name="ConditionLabel" FontSize="28" TextColor="White" HorizontalOptions="Center" />
+                <!--current temperature-->
+                <Label x:Name="TempLabel" FontSize="46" TextColor="White" HorizontalOptions="Center" />
+
+                <!-- Daily Forecast -->
+                <ScrollView Orientation="Horizontal" HeightRequest="200">
+                    <HorizontalStackLayout x:Name="NextDaysLayout"
+                           Spacing="{OnPlatform Android=15,Default=55}"
+                           HorizontalOptions="Center">
+
+                    </HorizontalStackLayout>
+                </ScrollView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

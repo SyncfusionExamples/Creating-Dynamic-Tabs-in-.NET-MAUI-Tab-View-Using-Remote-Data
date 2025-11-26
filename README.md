@@ -17,7 +17,7 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
  <VerticalStackLayout Padding="20" Spacing="20">
 
      <!--for selecting cities-->
-     <tabview:SfTabView x:Name="LocationTabView" TabBarPlacement="Top" IndicatorBackground="White"
+     <tabview:SfTabView x:Name="LocationTabView" IndicatorBackground="White"
                     TabWidthMode="{OnPlatform Android=SizeToContent}" >
 
          <tabview:SfTabItem Header="Phoenix" TextColor="White" FontSize="16"/>

@@ -18,7 +18,7 @@
 
         <!--for selecting cities-->
         <tabview:SfTabView x:Name="LocationTabView" IndicatorBackground="White"
-                   TabWidthMode="{OnPlatform Android=SizeToContent}" >
+                   TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}" >
 
             <tabview:SfTabItem Header="Phoenix" TextColor="White" FontSize="16"/>
             <tabview:SfTabItem Header="Seattle" TextColor="White" FontSize="16"/>

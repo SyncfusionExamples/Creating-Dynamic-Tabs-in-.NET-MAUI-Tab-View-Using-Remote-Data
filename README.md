@@ -18,7 +18,7 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
 
      <!--for selecting cities-->
      <tabview:SfTabView x:Name="LocationTabView" IndicatorBackground="White"
-                    TabWidthMode="{OnPlatform Android=SizeToContent}" >
+                    TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}" >
 
          <tabview:SfTabItem Header="Phoenix" TextColor="White" FontSize="16"/>
          <tabview:SfTabItem Header="Seattle" TextColor="White" FontSize="16"/>
@@ -59,7 +59,7 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
 
 ### Output
 
-![alt text](AndroidEmulator-nexus-5-api-35-52-ezgif.com-resize.gif)
+![Tab View](AndroidEmulator-nexus-5-api-35-52-ezgif.com-resize.gif)
 
 ## Requirements to run the demo
 

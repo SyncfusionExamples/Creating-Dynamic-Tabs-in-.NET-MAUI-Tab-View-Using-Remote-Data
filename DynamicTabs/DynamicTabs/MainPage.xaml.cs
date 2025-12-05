@@ -1,24 +1,34 @@
-﻿using Syncfusion.Maui.TabView;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace DynamicTabs
+﻿namespace DynamicTabs
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage 
     {
-        private WeatherPageController Controller { get; }
+        private readonly WeatherMainViewModel viewmodel = new(); // Create the main ViewModel instance
+
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            BindingContext = viewmodel; // Bind the page to the ViewModel
 
-            Controller = new WeatherPageController(
-            dateLabel: DateLabel,
-            tempLabel: TempLabel,
-            conditionLabel: ConditionLabel,
-            weatherIcon: WeatherIcon,
-            nextDaysLayout: NextDaysLayout,
-            locationTabView: LocationTabView,
-            displayAlertAsync: (title, message, cancel) => DisplayAlertAsync(title, message, cancel));
+            // Hook tab selection change - load data for selected city in background
+            // Do not await here; if needed it loads in background
+            LocationTabView.SelectionChanged += (_, e) => // Event handler for TabView selection changes
+            {
+                int index = (int)e.NewIndex; // Get new selected tab index
+                if (index >= 0 && index < viewmodel.Cities.Count) // Ensure index is valid
+                    _ = viewmodel.Cities[index].EnsureLoadedAsync(); // Fire-and-forget loading of city data
+            };
+        }
+
+        protected override async void OnAppearing() // Called when page appears on screen
+        {
+            base.OnAppearing(); // Call base implementation
+
+            if (viewmodel.Cities.Count > 0) // If there are cities configured
+            {
+                LocationTabView.SelectedIndex = 0; // Select the first tab by default
+                                                   // Load first tab, then prefetch others
+                await viewmodel.WarmUpAsync(); // Load visible city first; prefetch others in background
+            }
         }
     }
 }

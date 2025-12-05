@@ -5,56 +5,67 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
 ## Sample
 
 ```xaml
-     <!--Gradient background-->
- <ContentPage.Background>
-     <RadialGradientBrush Center="0.5,0.35" Radius="0.9">
-         <GradientStop Color="#3A91F7" Offset="0.0" />
-         <GradientStop Color="#0D2C4D" Offset="0.55" />
-         <GradientStop Color="#071421" Offset="1.0" />
-     </RadialGradientBrush>
- </ContentPage.Background>
+     <!-- City tabs -->
+<tabview:SfTabView x:Name="LocationTabView" ItemsSource="{Binding Cities}" IndicatorBackground="White">
 
- <VerticalStackLayout Padding="20" Spacing="20">
+    <!-- Header: city title -->
+    <tabview:SfTabView.HeaderItemTemplate>
+        <DataTemplate>
+            <Label Text="{Binding Name}" TextColor="White" VerticalTextAlignment="Center"
+                   FontSize="{OnPlatform Default=18, MacCatalyst=32}"
+                   Padding="{OnPlatform WinUI=55, Android=10, iOS=10, MacCatalyst=140}"/>
+        </DataTemplate>
+    </tabview:SfTabView.HeaderItemTemplate>
 
-     <!--for selecting cities-->
-     <tabview:SfTabView x:Name="LocationTabView" IndicatorBackground="White"
-                    TabWidthMode="{OnPlatform Android=SizeToContent, iOS=SizeToContent}" >
+    <!-- Content: weather UI -->
+    <tabview:SfTabView.ContentItemTemplate>
+        <DataTemplate>
+            <ScrollView>
+                <VerticalStackLayout Padding="{OnPlatform Default=20,MacCatalyst=40}" 
+                                     Spacing="{OnPlatform Default=15,MacCatalyst=30}">
 
-         <tabview:SfTabItem Header="Phoenix" TextColor="White" FontSize="16"/>
-         <tabview:SfTabItem Header="Seattle" TextColor="White" FontSize="16"/>
-         <tabview:SfTabItem Header="San Francisco" TextColor="White" FontSize="16"/>
-         <tabview:SfTabItem Header="Miami" TextColor="White" FontSize="16"/>
-         <tabview:SfTabItem Header="Denver" TextColor="White" FontSize="16"/>
-         <tabview:SfTabItem Header="Chicago" TextColor="White" FontSize="16"/>
-         <tabview:SfTabItem Header="New York" TextColor="White" FontSize="16"/>
-     </tabview:SfTabView>
+                    <!-- current date -->
+                    <Label Text="{Binding DateText}" FontSize="{OnPlatform Default=25,MacCatalyst=50}"
+                           TextColor="White" HorizontalOptions="Center" />
 
-     <!-- Weather Display -->
-     <ScrollView>
-         <VerticalStackLayout Padding="20" Spacing="15">
+                    <!-- current weather icon -->
+                    <Image Source="{Binding Icon}" HorizontalOptions="Center"
+                           HeightRequest="{OnPlatform Default=100,MacCatalyst=200}"/>
 
-             <!--current date-->
-             <Label x:Name="DateLabel" FontSize="25" TextColor="White" HorizontalOptions="Center" />
-             <!--current weather icon-->
-             <Image x:Name="WeatherIcon" HeightRequest="100" HorizontalOptions="Center" />
-             <!--current weather condition-->
-             <Label x:Name="ConditionLabel" FontSize="28" TextColor="White" HorizontalOptions="Center" />
-             <!--current temperature-->
-             <Label x:Name="TempLabel" FontSize="46" TextColor="White" HorizontalOptions="Center" />
+                    <!-- current weather condition -->
+                    <Label Text="{Binding ConditionText}" HorizontalOptions="Center"
+                           FontSize="{OnPlatform Default=28,MacCatalyst=56}" TextColor="White"/>
 
-             <!-- Daily Forecast -->
-             <ScrollView Orientation="Horizontal" HeightRequest="200">
-                 <HorizontalStackLayout x:Name="NextDaysLayout"
-                        Spacing="{OnPlatform Android=15,Default=55}"
-                        HorizontalOptions="Center">
+                    <!-- current temperature -->
+                    <Label Text="{Binding TempText}" FontSize="{OnPlatform Default=46,MacCatalyst=92}"
+                           TextColor="White" HorizontalOptions="Center" />
 
-                 </HorizontalStackLayout>
-             </ScrollView>
-
-         </VerticalStackLayout>
-     </ScrollView>
-
- </VerticalStackLayout>
+                    <!-- Daily Forecast -->
+                    <ScrollView Orientation="Horizontal" HeightRequest="200">
+                        <CollectionView ItemsSource="{Binding NextDays}" ItemsLayout="HorizontalList"
+                                        HorizontalOptions="Center" SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <VerticalStackLayout Spacing="6" HorizontalOptions="Center"
+                                                         WidthRequest="{OnPlatform Default=126,MacCatalyst=252}">
+                                        <Image Source="{Binding Icon}" HorizontalOptions="Center"
+                                               HeightRequest="{OnPlatform Default=30,MacCatalyst=60}"/>
+                                        <Label Text="{Binding DayText}" TextColor="White" HorizontalOptions="Center"
+                                               FontSize="{OnPlatform Default=18,MacCatalyst=32}" HorizontalTextAlignment="Center" />
+                                        <Label Text="{Binding HighText}" TextColor="White" HorizontalOptions="Center"
+                                               FontSize="{OnPlatform Default=18,MacCatalyst=32}"/>
+                                        <Label Text="{Binding LowText}" TextColor="White" HorizontalOptions="Center"
+                                               FontSize="{OnPlatform Default=18,MacCatalyst=32}"/>
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </ScrollView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </DataTemplate>
+    </tabview:SfTabView.ContentItemTemplate>
+</tabview:SfTabView>
 ```
 
 ### Output

@@ -8,15 +8,15 @@ namespace DynamicTabs
         public ObservableCollection<CityWeatherViewModel> Cities { get; } = new(); // Observable list of city view models
 
         private readonly Dictionary<string, (double Lat, double Lon)> CityCoordinates = new() // City presets
-    {
-        { "Phoenix",        (33.45, -112.07) },
-        { "Seattle",        (47.61, -122.33) },
-        { "San Francisco",  (37.77, -122.42) },
-        { "Miami",          (25.76, -80.19)  },
-        { "Denver",         (39.74, -104.99) },
-        { "Chicago",        (41.88, -87.63)  },
-        { "New York",       (40.71, -74.01)  },
-    };
+        {
+            { "Phoenix",        (33.45, -112.07) },
+            { "Seattle",        (47.61, -122.33) },
+            { "San Francisco",  (37.77, -122.42) },
+            { "Miami",          (25.76, -80.19)  },
+            { "Denver",         (39.74, -104.99) },
+            { "Chicago",        (41.88, -87.63)  },
+            { "New York",       (40.71, -74.01)  },
+        };
 
         public WeatherMainViewModel()
         {

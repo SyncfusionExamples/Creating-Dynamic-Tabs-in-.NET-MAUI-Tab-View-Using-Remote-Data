@@ -59,7 +59,7 @@
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <VerticalStackLayout Spacing="6" HorizontalOptions="Center"
-                                                                 WidthRequest="{OnPlatform Default=126,MacCatalyst=252}">
+                                                                 WidthRequest="{OnPlatform WinUI=150, Default=126,MacCatalyst=252}">
                                                 <Image Source="{Binding Icon}" HorizontalOptions="Center"
                                                        HeightRequest="{OnPlatform Default=30,MacCatalyst=60}"/>
                                                 <Label Text="{Binding DayText}" TextColor="White" HorizontalOptions="Center"

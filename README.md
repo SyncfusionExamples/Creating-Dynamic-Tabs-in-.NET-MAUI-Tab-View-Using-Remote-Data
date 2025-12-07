@@ -5,7 +5,6 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
 ## Sample
 
 ```xaml
-     <!-- City tabs -->
 <tabview:SfTabView x:Name="LocationTabView" ItemsSource="{Binding Cities}" IndicatorBackground="White">
 
     <!-- Header: city title -->
@@ -47,7 +46,7 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <VerticalStackLayout Spacing="6" HorizontalOptions="Center"
-                                                         WidthRequest="{OnPlatform Default=126,MacCatalyst=252}">
+                                                         WidthRequest="{OnPlatform WinUI=150, Default=126,MacCatalyst=252}">
                                         <Image Source="{Binding Icon}" HorizontalOptions="Center"
                                                HeightRequest="{OnPlatform Default=30,MacCatalyst=60}"/>
                                         <Label Text="{Binding DayText}" TextColor="White" HorizontalOptions="Center"
@@ -66,6 +65,7 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
         </DataTemplate>
     </tabview:SfTabView.ContentItemTemplate>
 </tabview:SfTabView>
+
 ```
 
 ### Output

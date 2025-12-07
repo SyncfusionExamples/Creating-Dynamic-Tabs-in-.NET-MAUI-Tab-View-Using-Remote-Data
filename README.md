@@ -10,9 +10,7 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
     <!-- Header: city title -->
     <tabview:SfTabView.HeaderItemTemplate>
         <DataTemplate>
-            <Label Text="{Binding Name}" TextColor="White" VerticalTextAlignment="Center"
-                   FontSize="{OnPlatform Default=18, MacCatalyst=32}"
-                   Padding="{OnPlatform WinUI=55, Android=10, iOS=10, MacCatalyst=140}"/>
+            <Label Text="{Binding Name}" TextColor="White" VerticalTextAlignment="Center"/>
         </DataTemplate>
     </tabview:SfTabView.HeaderItemTemplate>
 
@@ -20,44 +18,27 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
     <tabview:SfTabView.ContentItemTemplate>
         <DataTemplate>
             <ScrollView>
-                <VerticalStackLayout Padding="{OnPlatform Default=20,MacCatalyst=40}" 
-                                     Spacing="{OnPlatform Default=15,MacCatalyst=30}">
+                <VerticalStackLayout>
 
                     <!-- current date -->
-                    <Label Text="{Binding DateText}" FontSize="{OnPlatform Default=25,MacCatalyst=50}"
-                           TextColor="White" HorizontalOptions="Center" />
+                    <Label Text="{Binding DateText}" TextColor="White" HorizontalOptions="Center" />
 
                     <!-- current weather icon -->
-                    <Image Source="{Binding Icon}" HorizontalOptions="Center"
-                           HeightRequest="{OnPlatform Default=100,MacCatalyst=200}"/>
+                    <Image Source="{Binding Icon}" HorizontalOptions="Center"/>
 
                     <!-- current weather condition -->
-                    <Label Text="{Binding ConditionText}" HorizontalOptions="Center"
-                           FontSize="{OnPlatform Default=28,MacCatalyst=56}" TextColor="White"/>
+                    <Label Text="{Binding ConditionText}" HorizontalOptions="Center" TextColor="White"/>
 
                     <!-- current temperature -->
-                    <Label Text="{Binding TempText}" FontSize="{OnPlatform Default=46,MacCatalyst=92}"
-                           TextColor="White" HorizontalOptions="Center" />
+                    <Label Text="{Binding TempText}" TextColor="White" HorizontalOptions="Center" />
 
                     <!-- Daily Forecast -->
-                    <ScrollView Orientation="Horizontal" HeightRequest="200">
+                    <ScrollView Orientation="Horizontal">
                         <CollectionView ItemsSource="{Binding NextDays}" ItemsLayout="HorizontalList"
                                         HorizontalOptions="Center" SelectionMode="None">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <VerticalStackLayout Spacing="6" HorizontalOptions="Center"
-                                                         WidthRequest="{OnPlatform WinUI=150, Default=126,MacCatalyst=252}">
-                                        <Image Source="{Binding Icon}" HorizontalOptions="Center"
-                                               HeightRequest="{OnPlatform Default=30,MacCatalyst=60}"/>
-                                        <Label Text="{Binding DayText}" TextColor="White" HorizontalOptions="Center"
-                                               FontSize="{OnPlatform Default=18,MacCatalyst=32}" HorizontalTextAlignment="Center" />
-                                        <Label Text="{Binding HighText}" TextColor="White" HorizontalOptions="Center"
-                                               FontSize="{OnPlatform Default=18,MacCatalyst=32}"/>
-                                        <Label Text="{Binding LowText}" TextColor="White" HorizontalOptions="Center"
-                                               FontSize="{OnPlatform Default=18,MacCatalyst=32}"/>
-                                    </VerticalStackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
+
+                            <!-- Scrollable view for daily weather forecast -->
+
                         </CollectionView>
                     </ScrollView>
                 </VerticalStackLayout>
@@ -65,7 +46,6 @@ This sample demonstrates how to create dynamic tabs using a remote data source w
         </DataTemplate>
     </tabview:SfTabView.ContentItemTemplate>
 </tabview:SfTabView>
-
 ```
 
 ### Output

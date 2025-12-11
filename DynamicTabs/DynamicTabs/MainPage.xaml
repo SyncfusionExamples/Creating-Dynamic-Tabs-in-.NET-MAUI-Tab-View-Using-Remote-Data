@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabview="clr-namespace:Syncfusion.Maui.TabView;assembly=Syncfusion.Maui.TabView"
+             xmlns:local="clr-namespace:DynamicTabs"
+             x:Class="DynamicTabs.MainPage">
+
+    <!-- Gradient background -->
+    <ContentPage.Background>
+        <RadialGradientBrush Center="0.5,0.35" Radius="0.9">
+            <GradientStop Color="#3A91F7" Offset="0.0" />
+            <GradientStop Color="#0D2C4D" Offset="0.55" />
+            <GradientStop Color="#071421" Offset="1.0" />
+        </RadialGradientBrush>
+    </ContentPage.Background>
+
+    <VerticalStackLayout Padding="{OnPlatform Default=20,MacCatalyst=40}" 
+                         Spacing="{OnPlatform Default=20,MacCatalyst=40}">
+
+        <!-- City tabs -->
+        <tabview:SfTabView x:Name="LocationTabView" ItemsSource="{Binding Cities}" IndicatorBackground="White">
+
+            <!-- Header: city title -->
+            <tabview:SfTabView.HeaderItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}" TextColor="White" VerticalTextAlignment="Center"
+                           FontSize="{OnPlatform Default=18, MacCatalyst=32}"
+                           Padding="{OnPlatform WinUI=55, Android=10, iOS=10, MacCatalyst=140}"/>
+                </DataTemplate>
+            </tabview:SfTabView.HeaderItemTemplate>
+
+            <!-- Content: weather UI -->
+            <tabview:SfTabView.ContentItemTemplate>
+                <DataTemplate>
+                    <ScrollView>
+                        <VerticalStackLayout Padding="{OnPlatform Default=20,MacCatalyst=40}" 
+                                             Spacing="{OnPlatform Default=15,MacCatalyst=30}">
+
+                            <!-- current date -->
+                            <Label Text="{Binding DateText}" FontSize="{OnPlatform Default=25,MacCatalyst=50}"
+                                   TextColor="White" HorizontalOptions="Center" />
+
+                            <!-- current weather icon -->
+                            <Image Source="{Binding Icon}" HorizontalOptions="Center"
+                                   HeightRequest="{OnPlatform Default=100,MacCatalyst=200}"/>
+
+                            <!-- current weather condition -->
+                            <Label Text="{Binding ConditionText}" HorizontalOptions="Center"
+                                   FontSize="{OnPlatform Default=28,MacCatalyst=56}" TextColor="White"/>
+
+                            <!-- current temperature -->
+                            <Label Text="{Binding TempText}" FontSize="{OnPlatform Default=46,MacCatalyst=92}"
+                                   TextColor="White" HorizontalOptions="Center" />
+
+                            <!-- Daily Forecast -->
+                            <ScrollView Orientation="Horizontal" HeightRequest="200">
+                                <CollectionView ItemsSource="{Binding NextDays}" ItemsLayout="HorizontalList"
+                                                HorizontalOptions="Center" SelectionMode="None">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <VerticalStackLayout Spacing="6" HorizontalOptions="Center"
+                                                                 WidthRequest="{OnPlatform WinUI=150, Default=126,MacCatalyst=252}">
+                                                <Image Source="{Binding Icon}" HorizontalOptions="Center"
+                                                       HeightRequest="{OnPlatform Default=30,MacCatalyst=60}"/>
+                                                <Label Text="{Binding DayText}" TextColor="White" HorizontalOptions="Center"
+                                                       FontSize="{OnPlatform Default=18,MacCatalyst=32}" HorizontalTextAlignment="Center" />
+                                                <Label Text="{Binding HighText}" TextColor="White" HorizontalOptions="Center"
+                                                       FontSize="{OnPlatform Default=18,MacCatalyst=32}"/>
+                                                <Label Text="{Binding LowText}" TextColor="White" HorizontalOptions="Center"
+                                                       FontSize="{OnPlatform Default=18,MacCatalyst=32}"/>
+                                            </VerticalStackLayout>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </ScrollView>
+                        </VerticalStackLayout>
+                    </ScrollView>
+                </DataTemplate>
+            </tabview:SfTabView.ContentItemTemplate>
+        </tabview:SfTabView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
